@@ -137,31 +137,3 @@ body {
             from { width: 0; }
             to { width: 100%; }
         }
-
-        @media (max-width: 767px) {
-    body {
-        padding: 0;
-    }
-
-           .chatbot-container {
-        padding: 15px;
-    }
-
-            .chatbot-header h1 {
-                font-size: 30px;
-            }
-
-            .chatbot-header p {
-                font-size: 16px;
-            }
-
-            .form-control,
-            .btn {
-                padding: 12px 16px;
-                font-size: 14px;
-            }
-
-            .response-container {
-        font-size: 14px;
-    }
-}
