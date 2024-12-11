@@ -26,12 +26,18 @@ async function sendMessage(event) {
         const botResponse = resultData.choices[0].message.content;
 
         const responseElement = document.getElementById("response");
-        responseElement.textContent = botResponse;
-        responseElement.style.display = 'block';
-        responseElement.style.animation = 'fadeIn 0.5s ease';
+        responseElement.innerHTML = "";
+        let i = 0;
+        const interval = setInterval(() => {
+            if (i < botResponse.length) {
+                responseElement.textContent += botResponse.charAt(i);
+                i++;
+            } else {
+                clearInterval(interval);
+            }
+        }, 30); // Changed the interval to speed up the typing animation
     } catch (error) {
         console.error('Error:', error);
         alert('An error occurred. Please try again.');
     }
-    return false; // Prevent form submission and page refresh
 }

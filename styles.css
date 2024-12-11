@@ -1,139 +1,138 @@
-html, body {
-    height: 100%;
-    margin: 0;
-    padding: 0;
-    width: 100%;
-    background-color: #333333; /* Change background color to dark mode */
-}
-
 body {
     font-family: 'Montserrat', sans-serif;
     background-color: #333333;
+    color: #ffffff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
     margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+    overflow: hidden;
 }
 
 .chatbot-container {
     background-color: #333333;
-    padding: 20px;
+    color: #ffffff;
+    border-radius: 20px;
+    box-shadow: 0 0 40px rgba(0, 0, 0, 0.1);
+    padding: 40px;
     width: 100%;
+    max-width: 800px;
+    animation: fadeIn 0.5s ease;
     display: flex;
     flex-direction: column;
-    position: fixed;
-    top: 0;
-    left: 0;
+    height: 100%;
 }
 
-        .chatbot-header {
-            text-align: center;
-            margin-bottom: 30px;
-        }
+.chatbot-header {
+    text-align: center;
+    margin-bottom: 30px;
+}
 
-        .chatbot-header h1 {
-            font-size: 36px;
-            font-weight: 700;
-            color: #ffffff; /* Change text color to white */
-            animation: slideInDown 0.5s ease;
-        }
+.chatbot-header h1 {
+    font-size: 36px;
+    font-weight: 700;
+    color: #ffffff;
+    animation: slideInDown 0.5s ease;
+}
 
-        .chatbot-header p {
-            font-size: 18px;
-            color: #cccccc; /* Change text color to light gray */
-            animation: slideInUp 0.5s ease;
-        }
+.chatbot-header p {
+    font-size: 18px;
+    color: #ffffff;
+    animation: slideInUp 0.5s ease;
+}
 
-        .chat-container {
+.chat-container {
+    flex-grow: 1;
     display: flex;
     flex-direction: column;
 }
 
-        .form-group {
-            margin-bottom: 20px;
-            animation: fadeInUp 0.5s ease;
-        }
+.form-group {
+    margin-bottom: 20px;
+    animation: fadeInUp 0.5s ease;
+}
 
-        .form-group label {
-            font-size: 16px;
-            font-weight: 700;
-            color: #ffffff; /* Change text color to white */
-            display: block;
-            margin-bottom: 8px;
-        }
+.form-group label {
+    font-size: 16px;
+    font-weight: 700;
+    color: #ffffff;
+    display: block;
+    margin-bottom: 8px;
+}
 
-        .form-control {
-            width: 100%;
-            padding: 14px 18px;
-            font-size: 16px;
-            border: 1px solid #666666; /* Change border color to dark gray */
-            border-radius: 10px;
-            outline: none;
-            transition: border-color 0.3s ease;
-            background-color: #444444; /* Change background color to darker gray */
-            color: #ffffff; /* Change text color to white */
-        }
+.form-control {
+    width: 100%;
+    padding: 14px 18px;
+    font-size: 16px;
+    border: 1px solid #ffffff;
+    border-radius: 10px;
+    outline: none;
+    transition: border-color 0.3s ease;
+    animation: slideInLeft 0.5s ease;
+    color: #333333;
+    background-color: #ffffff;
+}
 
-        .form-control:focus {
-            border-color: #6c63ff;
-        }
+.form-control:focus {
+    border-color: #6c63ff;
+}
 
-        .btn {
-            background-color: #6c63ff;
-            color: #ffffff;
-            border: none;
-            border-radius: 10px;
-            padding: 10px 20px; /* Adjusted button padding for mobile */
-            font-size: 16px;
-            font-weight: 700;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
-        }
+.btn {
+    background-color: #6c63ff;
+    color: #ffffff;
+    border: none;
+    border-radius: 10px;
+    padding: 14px 28px;
+    font-size: 16px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    animation: slideInRight 0.5s ease;
+}
 
-        .btn:hover {
-            background-color: #5450d8;
-        }
+.btn:hover {
+    background-color: #5450d8;
+}
 
-        .response-container {
-    background-color: #444444; /* Change background color to darker gray */
+.response-container {
+    background-color: #333333; /* Changed to match the main background color */
     border-radius: 10px;
     padding: 18px;
     font-size: 16px;
-    color: #ffffff; /* Change text color to white */
+    color: #ffffff;
     white-space: pre-wrap;
     margin-top: 20px;
+    flex-grow: 1;
+    overflow-y: auto;
+    max-height: 300px;
 }
 
-        @keyframes fadeIn {
-            0% { opacity: 0; }
-            100% { opacity: 1; }
-        }
+@media (max-width: 767px) {
+    body {
+        padding: 20px;
+    }
 
-        @keyframes slideInDown {
-            0% { transform: translateY(-100%); }
-            100% { transform: translateY(0); }
-        }
+    .chatbot-container {
+        padding: 30px;
+    }
 
-        @keyframes slideInUp {
-            0% { transform: translateY(100%); }
-            100% { transform: translateY(0); }
-        }
+    .chatbot-header h1 {
+        font-size: 30px;
+    }
 
-        @keyframes fadeInUp {
-            0% { opacity: 0; transform: translateY(20px); }
-            100% { opacity: 1; transform: translateY(0); }
-        }
+    .chatbot-header p {
+        font-size: 16px;
+    }
 
-        @keyframes slideInLeft {
-            0% { transform: translateX(-100%); }
-            100% { transform: translateX(0); }
-        }
+    .form-control,
+    .btn {
+        padding: 12px 16px;
+        font-size: 14px;
+    }
 
-        @keyframes slideInRight {
-            0% { transform: translateX(100%); }
-            100% { transform: translateX(0); }
-        }
-
-        @keyframes typewriter {
-            from { width: 0; }
-            to { width: 100%; }
-        }
+    .response-container {
+        font-size: 14px;
+        max-height: 200px;
+    }
+}
