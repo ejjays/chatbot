@@ -1,11 +1,13 @@
-    html, body {
+ html, body {
     height: 100%;
     margin: 0;
     padding: 0;
     width: 100%;
     overflow: hidden;
+    position: fixed; /* Add this */
 }
-        body {
+
+body {
     font-family: 'Montserrat', sans-serif;
     background-color: #ffffff;
     display: flex;
@@ -13,21 +15,34 @@
     align-items: center;
     min-height: 100vh;
     margin: 0;
-    padding: 20px;
+    padding: 0; /* Remove padding */
     box-sizing: border-box;
 }
 
-        .chatbot-container {
+.chatbot-container {
     background-color: #ffffff;
-    border-radius: 20px;
-    box-shadow: 0 0 40px rgba(0, 0, 0, 0.1);
-    padding: 40px;
+    border-radius: 0; /* Remove border radius */
+    box-shadow: none; /* Remove shadow */
+    padding: 20px;
     width: 100%;
-    max-width: 800px;
-    height: 90vh;
+    max-width: 100%; /* Make it full width */
+    height: 100vh; /* Make it full height */
     animation: fadeIn 0.5s ease;
     display: flex;
     flex-direction: column;
+    position: absolute; /* Add this */
+    top: 0; /* Add this */
+    left: 0; /* Add this */
+}
+
+@media (max-width: 767px) {
+    body {
+        padding: 0; /* Remove padding for mobile */
+    }
+
+    .chatbot-container {
+        padding: 15px;
+    }
 }
 
         .chatbot-header {
