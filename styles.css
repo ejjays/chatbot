@@ -4,19 +4,19 @@ html, body {
     padding: 0;
     width: 100%;
     overflow: hidden;
-    background-color: #ffffff; /* Add background color here too */
+    background-color: #333333; /* Change background color to dark mode */
 }
 
 body {
     font-family: 'Montserrat', sans-serif;
-    background-color: #ffffff;
+    background-color: #333333;
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
 .chatbot-container {
-    background-color: #ffffff;
+    background-color: #333333;
     padding: 20px;
     width: 100%;
     height: 100vh;
@@ -36,13 +36,13 @@ body {
         .chatbot-header h1 {
             font-size: 36px;
             font-weight: 700;
-            color: #333333;
+            color: #ffffff; /* Change text color to white */
             animation: slideInDown 0.5s ease;
         }
 
         .chatbot-header p {
             font-size: 18px;
-            color: #666666;
+            color: #cccccc; /* Change text color to light gray */
             animation: slideInUp 0.5s ease;
         }
 
@@ -61,7 +61,7 @@ body {
         .form-group label {
             font-size: 16px;
             font-weight: 700;
-            color: #333333;
+            color: #ffffff; /* Change text color to white */
             display: block;
             margin-bottom: 8px;
         }
@@ -70,11 +70,13 @@ body {
             width: 100%;
             padding: 14px 18px;
             font-size: 16px;
-            border: 1px solid #d9d9d9;
+            border: 1px solid #666666; /* Change border color to dark gray */
             border-radius: 10px;
             outline: none;
             transition: border-color 0.3s ease;
             animation: slideInLeft 0.5s ease;
+            background-color: #444444; /* Change background color to darker gray */
+            color: #ffffff; /* Change text color to white */
         }
 
         .form-control:focus {
@@ -99,11 +101,11 @@ body {
         }
 
         .response-container {
-    background-color: #f0f0f0;
+    background-color: #444444; /* Change background color to darker gray */
     border-radius: 10px;
     padding: 18px;
     font-size: 16px;
-    color: #333333;
+    color: #ffffff; /* Change text color to white */
     white-space: pre-wrap;
     animation: typewriter 2s steps(20) infinite;
     margin-top: 20px;
