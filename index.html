@@ -6,7 +6,8 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:400,700&display=swap">
     <link rel="stylesheet" href="styles.css">
     
-<script> src="script.js" </script>
+<script src="script.js"></script> <!-- Corrected script tag -->
+
 </head>
 <body>
     <div class="chatbot-container">
@@ -15,7 +16,7 @@
             <p>Hey there! Feel free to ask me anything and I'll do my best to help!</p>
         </div>
         <div class="chat-container">
-            <form onsubmit="sendMessage(event)">
+            <form onsubmit="return sendMessage(event)"> <!-- Added return statement -->
                 <div class="form-group">
                     <label for="message">Your Message:</label>
                     <textarea id="message" name="message" class="form-control" rows="3" required></textarea>
