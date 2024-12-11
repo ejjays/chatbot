@@ -26,11 +26,12 @@ async function sendMessage(event) {
         const botResponse = resultData.choices[0].message.content;
 
         const responseElement = document.getElementById("response");
-        responseElement.textContent = botResponse; // Corrected line
+        responseElement.textContent = botResponse;
         responseElement.style.display = 'block';
         responseElement.style.animation = 'fadeIn 0.5s ease';
     } catch (error) {
         console.error('Error:', error);
         alert('An error occurred. Please try again.');
     }
+    return false; // Prevent form submission and page refresh
 }
