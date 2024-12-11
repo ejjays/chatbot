@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>AI Chatbot</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:400,700&display=swap">
+    <style>
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: #ffffff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            overflow: hidden;
+        }
+
+        .chatbot-container {
+            background-color: #ffffff;
+            border-radius: 20px;
+            box-shadow: 0 0 40px rgba(0, 0, 0, 0.1);
+            padding: 40px;
+            width: 100%;
+            max-width: 800px;
+            animation: fadeIn 0.5s ease;
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+
+        .chatbot-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .chatbot-header h1 {
+            font-size: 36px;
+            font-weight: 700;
+            color: #333333;
+            animation: slideInDown 0.5s ease;
+        }
+
+        .chatbot-header p {
+            font-size: 18px;
+            color: #666666;
+            animation: slideInUp 0.5s ease;
+        }
+
+        .chat-container {
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+            animation: fadeInUp 0.5s ease;
+        }
+
+        .form-group label {
+            font-size: 16px;
+            font-weight: 700;
+            color: #333333;
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 14px 18px;
+            font-size: 16px;
+            border: 1px solid #d9d9d9;
+            border-radius: 10px;
+            outline: none;
+            transition: border-color 0.3s ease;
+            animation: slideInLeft 0.5s ease;
+        }
+
+        .form-control:focus {
+            border-color: #6c63ff;
+        }
+
+        .btn {
+            background-color: #6c63ff;
+            color: #ffffff;
+            border: none;
+            border-radius: 10px;
+            padding: 14px 28px;
+            font-size: 16px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            animation: slideInRight 0.5s ease;
+        }
+
+        .btn:hover {
+            background-color: #5450d8;
+        }
+
+        .response-container {
+            background-color: #f0f0f0;
+            border-radius: 10px;
+            padding: 18px;
+            font-size: 16px;
+            color: #333333;
+            white-space: pre-wrap;
+            animation: typewriter 2s steps(20) infinite;
+            margin-top: 20px;
+            flex-grow: 1;                  
+        }
+
+        @keyframes fadeIn {
+            0% { opacity: 0; }
+            100% { opacity: 1; }
+        }
+
+        @keyframes slideInDown {
+            0% { transform: translateY(-100%); }
+            100% { transform: translateY(0); }
+        }
+
+        @keyframes slideInUp {
+            0% { transform: translateY(100%); }
+            100% { transform: translateY(0); }
+        }
+
+        @keyframes fadeInUp {
+            0% { opacity: 0; transform: translateY(20px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes slideInLeft {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(0); }
+        }
+
+        @keyframes slideInRight {
+            0% { transform: translateX(100%); }
+            100% { transform: translateX(0); }
+        }
+
+        @keyframes typewriter {
+            from { width: 0; }
+            to { width: 100%; }
+        }
+
+        @media (max-width: 767px) {
+            body {
+                padding: 20px;
+            }
+
+            .chatbot-container {
+                padding: 30px;
+            }
+
+            .chatbot-header h1 {
+                font-size: 30px;
+            }
+
+            .chatbot-header p {
+                font-size: 16px;
+            }
+
+            .form-control,
+            .btn {
+                padding: 12px 16px;
+                font-size: 14px;
+            }
+
+            .response-container {
+                font-size: 14px;
+                max-height: 200px;
+            }
+        }
+    </style>
+    <script src="our-church.js" defer></script>
+<script>
+        async function sendMessage(event) {
+            event.preventDefault();
+            const message = document.getElementById("message").value;
+
+            try {
+                const response = await fetch("config.json");
+                const config = await response.json();
+                const apiKey = config.apiKey;
+                const url = 'https://openrouter.ai/api/v1/chat/completions';
+
+                const data = {
+                    model: 'openai/gpt-3.5-turbo',
+                    messages: [{ role: 'user', content: message }]
+                };
+
+                const result = await fetch(url, {
+                    method: 'POST',
+                    headers: {
+                        'Authorization': `Bearer ${apiKey}`,
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(data)
+                });
+
+                const resultData = await result.json();
+                const botResponse = resultData.choices[0].message.content;
+
+                const responseElement = document.getElementById("response");
+                responseElement.textContent = botResponse;
+                responseElement.style.display = 'block';
+                responseElement.style.animation = 'fadeIn 0.5s ease';
+            } catch (error) {
+                console.error('Error:', error);
+                alert('An error occurred. Please try again.');
+            }
+        }
+    </script>
+</head>
+<body>
+    <div class="chatbot-container">
+        <div class="chatbot-header">
+            <h1>AI Chatbot</h1>
+            <p>Ask me anything and I'll do my best to help!</p>
+        </div>
+        <div class="chat-container">
+            <form onsubmit="sendMessage(event)">
+                <div class="form-group">
+                    <label for="message">Your Message:</label>
+                    <textarea id="message" name="message" class="form-control" rows="3" required></textarea>
+                </div>
+                <button type="submit" class="btn">Send</button>
+            </form>
+            <div class="response-container" id="response" style="display: none;"></div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS and dependencies -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
